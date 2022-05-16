@@ -28,11 +28,12 @@ h1 {
 
 .slider {
   display: grid;
-  width: 90vw;
+  row-gap: 1rem;
+  max-width: 90vw;
   margin: 0 auto;
   grid-template-columns: 70% 30%;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
 }
 
 @keyframes slide-in {
@@ -44,33 +45,35 @@ h1 {
   }
 }
 
-.slide { 
+.slide {
+  outline: 1px solid red;
+
   display: none;
   margin: 0 auto;
   grid-column: 1/3;
-  width: 50%;
+  width: auto;
+  height: auto;
   animation: var(--a-time) ease-in slide-in;
   text-align: center;
 }
 
-.slide__img {
-  height: 70vh;
+.img {
+  max-height: 70vh;
   border-radius: 1rem;
 }
 
 .text {
   display: none;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .text {
   font-size: 2rem;
-
   animation: var(--a-time) ease-in slide-in;
 }
 
 /* navigation */
-.slider__label {
+.label {
   display: inline-block;
   height: 0.2rem;
   width: 0.2rem;
@@ -82,7 +85,8 @@ h1 {
   cursor: pointer;
 }
 
-.slider__label:hover {
+.label:hover {
+  border-color: white;
   background-color: white;
 }
 
@@ -106,15 +110,42 @@ h1 {
 }
 
 /* navigation styling */
-#input-1:checked ~ .slider__nav .slider__label--1 {
+#input-1:checked ~ .nav .label-1 {
   background-color: black;
 }
-#input-2:checked ~ .slider__nav .slider__label--2 {
+#input-2:checked ~ .nav .label-2 {
   background-color: black;
 }
-#input-3:checked ~ .slider__nav .slider__label--3 {
+#input-3:checked ~ .nav .label-3 {
   background-color: black;
 }
-#input-4:checked ~ .slider__nav .slider__label--4 {
+#input-4:checked ~ .nav .label-4 {
   background-color: black;
+}
+
+@media (max-width: 768px) {
+  .slider {
+    grid-template-columns: 100%;
+    justify-items: center;
+  }
+
+  .slide {
+    grid-column: 1/2;
+    align-self: center;
+  }
+  .text {
+    text-align: center;
+  }
+  .nav {
+    grid-row: 0/-1;
+  }
+  .img {
+    width: 75%;
+  }
+}
+
+@media (max-width: 320px) {
+  .img {
+    width: 50%;
+  }
 }
